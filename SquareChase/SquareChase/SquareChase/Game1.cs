@@ -21,6 +21,7 @@ namespace SquareChase
         Random rand = new Random();
         Texture2D squareTexture;
         Rectangle currentSquare;
+        int squaresize = 25;
         int playerScore = 0;
         float timeRemaining = 0.0f;
         const float TimePerSquare = 0.75f;
@@ -87,16 +88,16 @@ namespace SquareChase
             if (timeRemaining == 0.0f)
             {
                 currentSquare = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
+                rand.Next(0, this.Window.ClientBounds.Width - squaresize),
+                rand.Next(0, this.Window.ClientBounds.Height - squaresize),
+                squaresize, squaresize );
                 timeRemaining = TimePerSquare;
             }
             MouseState mouse = Mouse.GetState();
             if ((mouse.LeftButton == ButtonState.Pressed) &&
             (currentSquare.Contains(mouse.X, mouse.Y)))
             {
-                
+                squaresize--;
                 playerScore++;
                 timeRemaining = 0.0f;
             }
